@@ -1,5 +1,5 @@
 import amqplib from 'amqplib';
-import DLQModel from '../model/DLQSchema';
+import DLQModel from '../model/DLQSchema.js';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 })
 
 
-async function mailSender(email: string, subject: string, message: string) {
+async function mailSender(email,subject, message) {
 
     await transporter.sendMail({
         from: "somgorai726@gmail.com",
@@ -28,7 +28,7 @@ async function mailSender(email: string, subject: string, message: string) {
 
 export async function consumer() {
     try {
-        const connection = await amqplib.connect(process.env.AMQP_URL!);
+        const connection = await amqplib.connect(process.env.AMQP_URL);
         const channel = await connection.createChannel();
 
         const dlqExchange = "dlq_exchange";
@@ -104,7 +104,7 @@ export async function consumer() {
 
                     console.log("Message saved to DLQ Database");
                     channel.ack(msg);
-                } catch (err: any) {
+                } catch (err) {
                     console.error("Error processing dlq_queue message:", err);
                     // nack and don't requeue to avoid infinite loops in DLQ
                     channel.nack(msg, false, false);

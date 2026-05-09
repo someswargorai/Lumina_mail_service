@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { consumer } from './consumer/consumer';
-import { mongodbConnection } from './config/mongo_config';
+import { consumer } from './consumer/consumer.js';
+import { mongodbConnection } from './config/mongo_config.js';
 
 
 const app = express();
