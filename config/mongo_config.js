@@ -3,10 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const MONGO_USER = process.env.MONGO_USER!;
-const MONGO_PASS = process.env.MONGO_PASS!;
-const MONGO_CLUSTER = process.env.MONGO_CLUSTER!;
-const MONGO_DB = process.env.MONGO_DB!;
+const MONGO_USER = process.env.MONGO_USER;
+const MONGO_PASS = process.env.MONGO_PASS;
+const MONGO_CLUSTER = process.env.MONGO_CLUSTER;
+const MONGO_DB = process.env.MONGO_DB;
  
 export const mongodbConnection = async()=>{
     try{
